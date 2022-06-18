@@ -1,0 +1,32 @@
+version = 0.1
+extensions = ['chomp@0.1:swc', 'chomp@0.1:jspm']
+
+default-task = 'build'
+
+[template-options.npm]
+auto-install = true
+
+[[task]]
+name = 'copy:html'
+deps = ["index.html"]
+run = 'cp ./index.html ./lib/index.html'
+
+
+[[task]]
+name = 'build'
+deps = ['build:ts', 'copy:html']
+
+[[task]]
+name = 'build:ts'
+template = 'swc'
+target = 'lib/##.js'
+deps = ['src/##.ts']
+
+
+[[task]]
+name = 'run'
+run = 'node --experimental-specifier-resolution=node lib/index.js'
+
+[[task]]
+name = 'story'
+run = 'start-storybook -p 8080'

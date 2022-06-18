@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+      "incremental": true,
+      "module": "esnext",
+      "target": "ES5",
+      "declaration": true,
+      "lib": ["es2015", "dom"],
+      "sourceMap": true,
+      "types": ["node", "jest"],
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "allowSyntheticDefaultImports": true,
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "moduleResolution": "node",
+      "noImplicitAny": true,
+      "baseUrl": "src",
+      "jsx": "preserve",
+      "typeRoots" : [
+        "node_modules/@types"
+      ]
+    },
+    "exclude": [
+      "node_modules",
+      "**/lib/**",
+    ]
+  }
