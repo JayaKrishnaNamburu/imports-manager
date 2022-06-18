@@ -1,9 +1,9 @@
 import { html, useState, useContext } from "haunted";
-import { ManagerContext } from "./index.js";
+import { ManagerContext } from "./utils.js";
 
 export const Search = () => {
   const { store, manager } = useContext(ManagerContext);
-  const [search, setSearch] = useState<string | null>(null);
+  const [search, setSearch] = useState<string | null>("react@17.0.2");
 
   const handleSearch = async () => {
     if (!search) {
@@ -15,14 +15,15 @@ export const Search = () => {
   };
 
   const handleInstall = async () => {
+    store.isDependencyInstalling.next(true);
     await manager.install(search);
-    console.log(manager.getImports());
     store.dependencies.next(manager.getImports());
+    store.isDependencyInstalling.next(false);
   };
 
   return html`<div>
     <input value=${search} @change=${(ev: any) => setSearch(ev.target.value)} />
-    <button @click=${handleSearch}>Fetch Subpaths</button>
+    <button @click=${handleSearch}>Exports</button>
     <button @click=${handleInstall}>Install</button>
   </div>`;
 };
