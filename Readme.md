@@ -1,9 +1,11 @@
 Open two instances of terminal and run
 
 ```shell
-chomp --serve
+chomp --watch
 ```
 
+Inside `/lib` folder
+
 ```shell
-chomp --watch
+chomp --serve
 ```

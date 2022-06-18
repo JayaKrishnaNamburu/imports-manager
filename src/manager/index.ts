@@ -17,13 +17,19 @@ export class ImportMapManager {
     return this.services.loadExportsForPackage(packageName);
   }
 
+  async install(depName: string) {
+    await this.generator.install(depName);
+  }
+
   getImports() {
     try {
-      return Object.keys(this.generator.getMap()).reduce(
+      return Object.keys(this.generator.getMap().imports).reduce(
         (acc: Record<string, string>, dep) => {
           const result = this.generator
             .getMap()
-            [dep].match(/@[~^]?([\dvx*]+(?:[-.](?:[\dx*]+|alpha|beta))*)/gm);
+            .imports[dep].match(
+              /@[~^]?([\dvx*]+(?:[-.](?:[\dx*]+|alpha|beta))*)/gm
+            );
           const version = result?.[0];
           if (!version) {
             throw new Error(`Version missing for the dependency ${dep}`);

@@ -7,6 +7,7 @@ import { Dependencies } from "./dependencies.js";
 
 const store = {
   exports: new Subject<string[] | null>(null),
+  dependencies: new Subject<Record<string, string> | null>(null),
 };
 
 const ManagerContext = createContext({
